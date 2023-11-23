@@ -177,11 +177,11 @@ def send_email(sender_email, sender_password, recipient_email, subject, body, at
     server.quit()
 
 # Data for sending an email
-sender_email = 'adrianfrankowski25@gmail.com'
-sender_password = 'xzykmxmgxcnlintk'
-recipient_email = 'nostale557@gmail.com'
-subject = 'Temat wiadomości'
-body = 'Treść wiadomości.'
+sender_email = 'your_email@gmail.com'
+sender_password = 'your gmail app password'
+recipient_email = 'your recipient email'
+subject = 'email subject'
+body = 'email content.'
 
 def generate_paths():
     unix_time = time.time()
