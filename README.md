@@ -27,7 +27,7 @@ This is my BadUSB project. This repository showcases a BadUSB attack using Ardui
 1. Open the python script in a text editor.
 2. Locate the following lines in the script:
 
-   \# Data for sending an email \
+   &num; Data for sending an email \
    sender_email = "your_email@gmail.com" \
    sender_password = "your gmail app password" \
    recipient_email = "recipient_email@example.com" \
