@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is my BadUSB project. There are three main files:
+This is my BadUSB project. This repository showcases a BadUSB attack using Arduino and Python scripts. By simulating a keyboard, the Arduino executes commands to download and run a file on the target system. Please use this project responsibly and for educational purposes only. There are three main files:
 
 1. **Arduino File**
    - File with .ino extension
