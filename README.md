@@ -15,3 +15,22 @@ This is my BadUSB project. This repository showcases a BadUSB attack using Ardui
 3. **Executable File**
    - File with .exe extension
    - Description: Executable file generated from python file. This file can be run on a Windows system to automatically collect and send PC information.
+
+## Usage
+
+### Arduino File
+1. Upload the ino file to an Arduino board.
+2. Connect the Arduino to the target system.
+3. The Arduino will simulate a keyboard and execute predefined commands.
+
+### Python File
+1. Open the python script in a text editor.
+2. Locate the following lines in the script:
+
+   # Data for sending an email
+   sender_email = "your_email@gmail.com"
+   sender_password = "your gmail app password"
+   recipient_email = "recipient_email@example.com"
+   
+4. Change the sender_email and recipient_email to your desired email addresses.
+5. Save the changes.
