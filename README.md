@@ -30,7 +30,7 @@ This is my BadUSB project. This repository showcases a BadUSB attack using Ardui
    sender_email = "your_email@gmail.com" \
    sender_password = "your gmail app password" \
    recipient_email = "recipient_email@example.com"
-4. Change the sender_email and recipient_email to your desired email addresses.
+4. Change the sender_email, sender_password and recipient_email to your desired email addresses.
 5. Save the changes.
 
 ### Setting up Gmail App Password
