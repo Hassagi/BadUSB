@@ -181,8 +181,8 @@ def send_email(sender_email, sender_password, recipient_email, subject, body, at
 sender_email = 'your_email@gmail.com'
 sender_password = 'your gmail app password'
 recipient_email = 'your recipient email'
-subject = 'Temat wiadomości'
-body = 'Treść wiadomości.'
+subject = 'email subject'
+body = 'email content.'
 
 def generate_paths():
     unix_time = time.time()
